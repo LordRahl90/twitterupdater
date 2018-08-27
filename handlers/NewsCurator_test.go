@@ -12,7 +12,7 @@ import (
 func TestFetchNews(t *testing.T) {
 	_ = godotenv.Load("../.env")
 	newsAPIKey := os.Getenv("NewsAPIKey")
-	FetchNews(newsAPIKey)
+	FetchAllNews(newsAPIKey)
 }
 
 func TestPublishNews(t *testing.T) {
@@ -31,4 +31,10 @@ func TestPublishNews(t *testing.T) {
 
 	response := PublishNews(newArticle)
 	log.Println(response)
+}
+
+func TestFetchTopHeadlines(t *testing.T) {
+	_ = godotenv.Load("../.env")
+	newsAPIKey := os.Getenv("NewsAPIKey")
+	FetchTopHeadlines(newsAPIKey, "ng")
 }

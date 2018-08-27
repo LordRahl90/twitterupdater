@@ -2,6 +2,7 @@ package utility
 
 import (
 	"log"
+	"net/http"
 	"os"
 
 	"github.com/dghubble/go-twitter/twitter"
@@ -30,5 +31,19 @@ func GetTwitterClient() (client *twitter.Client) {
 
 	httpClient := config.Client(oauth1.NoContext, token)
 	client = twitter.NewClient(httpClient)
+	return
+}
+
+//GetNewsClient - function to create http client
+func GetNewsClient() (client *http.Client) {
+	tr := &http.Transport{
+		MaxIdleConns:       10,
+		IdleConnTimeout:    80,
+		DisableCompression: true,
+	}
+	client = &http.Client{
+		Transport: tr,
+	}
+
 	return
 }
